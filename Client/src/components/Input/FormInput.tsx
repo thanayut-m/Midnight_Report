@@ -1,4 +1,4 @@
-import { FieldValues, Path, UseFormRegister } from "react-hook-form"
+import { FieldErrors, FieldValues, Path, UseFormRegister } from "react-hook-form"
 import Input from "./Input";
 
 interface FormInputProps<T extends FieldValues> {
@@ -8,6 +8,7 @@ interface FormInputProps<T extends FieldValues> {
     name: Path<T>;
     register: UseFormRegister<T>;
     inputStateClassName: string;
+    errors?: FieldErrors<T>;
 }
 
 const FormInput = <T extends FieldValues>({
@@ -16,7 +17,8 @@ const FormInput = <T extends FieldValues>({
     label,
     register,
     name,
-    inputStateClassName
+    inputStateClassName,
+    errors
 }: FormInputProps<T>) => {
     return (
         <fieldset className="fieldset">
@@ -29,6 +31,7 @@ const FormInput = <T extends FieldValues>({
                 name={name}
                 type={type}
                 placeholder={placeholder}
+                errors={errors}
                 inputStateClassName={inputStateClassName}
             />
         </fieldset>

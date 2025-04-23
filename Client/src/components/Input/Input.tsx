@@ -1,4 +1,4 @@
-import { FieldValues, Path, UseFormRegister } from "react-hook-form"
+import { FieldErrors, FieldValues, Path, UseFormRegister } from "react-hook-form"
 
 interface InputProps<T extends FieldValues> {
     type: string;
@@ -6,6 +6,7 @@ interface InputProps<T extends FieldValues> {
     name: Path<T>;
     register: UseFormRegister<T>;
     inputStateClassName: string;
+    errors?: FieldErrors<T>;
 }
 
 const Input = <T extends FieldValues>({
@@ -13,15 +14,23 @@ const Input = <T extends FieldValues>({
     placeholder,
     register,
     name,
-    inputStateClassName
+    inputStateClassName,
+    errors = {}
 }: InputProps<T>) => {
+
+    const hasError = !!errors[name];
     return (
-        <input
-            {...register(name)}
-            type={type}
-            placeholder={placeholder}
-            className={`input w-full ${inputStateClassName} `}
-        />
+        <fieldset className="fieldset">
+            <input
+                {...register(name)}
+                type={type}
+                placeholder={placeholder}
+                className={`input w-full ${hasError ? "input input-error" : inputStateClassName}`}
+            />
+            {
+                hasError && (<p className="text-red-500">{errors[name]?.message?.toString()}</p>)
+            }
+        </fieldset >
     )
 }
 export default Input
