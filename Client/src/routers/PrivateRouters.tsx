@@ -1,11 +1,14 @@
 import { Route, Routes } from "react-router"
 import Dashboard from "../page/Dashboard/Dashboard"
+import PrivateLayout from "../layouts/PrivateLayout"
 
 const PrivateRouters = () => {
     return (
-        <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
+        <PrivateLayout>
+            <Routes>
+                <Route path="/dashboard" element={<Dashboard />} />
+            </Routes>
+        </PrivateLayout>
     )
 }
 export default PrivateRouters

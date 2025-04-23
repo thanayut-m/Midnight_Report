@@ -5,7 +5,7 @@ interface InputProps<T extends FieldValues> {
     placeholder?: string;
     name: Path<T>;
     register: UseFormRegister<T>;
-    inputStateClassName: string;
+    inputStateClassName?: string;
     errors?: FieldErrors<T>;
 }
 
