@@ -1,33 +1,37 @@
 import { FieldValues, Path, UseFormRegister } from "react-hook-form"
+import Input from "./Input";
 
-interface InputProps<T extends FieldValues> {
+interface FormInputProps<T extends FieldValues> {
     type: string;
     placeholder?: string;
     label: string;
     name: Path<T>;
     register: UseFormRegister<T>;
+    inputStateClassName: string;
 }
 
-const Input = <T extends FieldValues>({
+const FormInput = <T extends FieldValues>({
     type,
     placeholder,
     label,
     register,
-    name
-}: InputProps<T>) => {
+    name,
+    inputStateClassName
+}: FormInputProps<T>) => {
     return (
         <fieldset className="fieldset">
             <legend
                 className="fieldset-legend">
                 {label}
             </legend>
-            <input
-                {...register(name)}
+            <Input
+                register={register}
+                name={name}
                 type={type}
                 placeholder={placeholder}
-                className="input focus:input-warning w-full"
+                inputStateClassName={inputStateClassName}
             />
         </fieldset>
     )
 }
-export default Input
+export default FormInput

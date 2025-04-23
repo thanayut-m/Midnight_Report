@@ -1,4 +1,10 @@
-const AuthLayouts = ({ children }) => {
+interface AuthLayoutsProps {
+    children: React.ReactNode;
+}
+
+const AuthLayouts = ({
+    children
+}: AuthLayoutsProps) => {
     return (
         <div className="flex flex-col justify-center items-center h-screen bg-[#e7e7e7]">
             <main className="max-md:w-11/12 sm:w-8/12 md:w-6/12 xl:w-4/12 bg-white py-20 px-15 rounded-2xl shadow-2xl">

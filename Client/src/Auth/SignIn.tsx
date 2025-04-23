@@ -1,7 +1,8 @@
 import { useEffect } from "react"
 import AuthLayouts from "../layouts/AuthLayouts"
-import Input from "../components/Input";
 import { useForm } from "react-hook-form";
+import FormInput from "../components/Input/FormInput";
+import Buttons from "../components/Buttons";
 
 const SignIn = () => {
 
@@ -25,26 +26,26 @@ const SignIn = () => {
                     <p className="text-4xl font-semibold ">เข้าสู่ระบบ</p>
                 </div>
                 <div className="grid grid-rows-2">
-                    <Input
+                    <FormInput
                         register={register}
                         name="sign_email"
                         label="Email"
                         type="text"
                         placeholder="@gmail.com"
+                        inputStateClassName="focus:input-warning hover:input-warning"
                     />
-                    <Input
+                    <FormInput
                         register={register}
                         name="sign_password"
                         label="Password"
                         type="password"
                         placeholder="Password"
+                        inputStateClassName="focus:input-warning hover:input-warning"
                     />
                 </div>
                 <div className="mt-3">
-                    <button className="btn btn-info w-full">เข้าสู่ระบบ</button>
+                    <Buttons>เข้าสู่ระบบ</Buttons>
                 </div>
-                {/* <div className="divider">OR</div>
-                <button className="btn btn-info w-full">เข้าสู่ระบบ</button> */}
             </form>
         </AuthLayouts>
     )
