@@ -1,4 +1,6 @@
+// Sidebar.tsx
 import { GrFormClose } from "react-icons/gr";
+import SidebarMenuItem from "./SidebarMenuItem";
 
 interface SidebarProps {
     isOpen: boolean;
@@ -21,9 +23,6 @@ const Sidebar = ({
             >
                 <div className={`${!isOpen && "hidden"} pt-2`}>
                     <div className="flex justify-end items-center">
-                        {/* <div className="ml-4">
-                            <h1 className="text-[25px] font-bold text-gray-500">Vet Link</h1>
-                        </div> */}
                         <GrFormClose
                             size={30}
                             onClick={onToggleSidebar}
@@ -32,8 +31,23 @@ const Sidebar = ({
                     </div>
                     <div className="">
                         <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-                            <li><a>Sidebar Item 1</a></li>
-                            <li><a>Sidebar Item 2</a></li>
+                            <SidebarMenuItem
+                                title="Sidebar Item 1"
+                            />
+                            <SidebarMenuItem
+                                title="Sidebar Item 2"
+                                subItems={[
+                                    { title: "Submenu Item 1", to: "/submenu1" },
+                                    { title: "Submenu Item 2", to: "/submenu2" }
+                                ]}
+                            />
+                            <SidebarMenuItem
+                                title="Sidebar Item 3"
+                                subItems={[
+                                    { title: "Submenu Item 3", to: "/submenu3" },
+                                    { title: "Submenu Item 4", to: "/submenu4" }
+                                ]}
+                            />
                         </ul>
                     </div>
                 </div>
