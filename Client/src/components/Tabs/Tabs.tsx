@@ -1,9 +1,18 @@
 import { useState } from "react"
 
+type MenuTab = {
+    tab: string;
+    name: string;
+    content: React.ReactNode;
+};
+
+interface TabsProps {
+    menuTab: MenuTab[];
+}
+
 const Tabs = ({
     menuTab = []
-}
-) => {
+}: TabsProps) => {
     const [activeTab, setActiveTab] = useState(menuTab[0]?.tab || "");
 
     return (
