@@ -45,7 +45,7 @@ const Sidebar = ({
                             />
                             <MenuItem
                                 title="ตั้งค่าการใช้งาน"
-                                link="/private/user-management"
+                                link="/private/setting"
                                 onToggleSidebar={onToggleSidebar}
                             />
                             <SubMenu
