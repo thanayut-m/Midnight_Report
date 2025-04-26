@@ -1,16 +1,18 @@
 interface ButtonsProps {
     children: React.ReactNode;
     isSubmitting?: boolean;
+    width?: string;
 }
 
 const Buttons = ({
     children,
-    isSubmitting
+    isSubmitting,
+    width
 }: ButtonsProps) => {
     return (
         <button
             disabled={isSubmitting}
-            className="btn w-full bg-amber-400 hover:bg-amber-600 "
+            className={`btn bg-amber-400 hover:bg-amber-600 ${width}`}
         >
             {isSubmitting ?
                 <div className="flex flex-row">

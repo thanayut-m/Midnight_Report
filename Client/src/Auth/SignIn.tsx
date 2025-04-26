@@ -37,7 +37,7 @@ const SignIn = () => {
                     <FormInput
                         register={register}
                         name="sign_email"
-                        label="text"
+                        label="Email"
                         type="email"
                         placeholder="@gmail.com"
                         inputStateClassName="focus:input-warning hover:input-warning"
@@ -56,6 +56,7 @@ const SignIn = () => {
                 <div className="mt-3">
                     <Buttons
                         isSubmitting={isSubmitting}
+                        width="w-full"
                     >
                         เข้าสู่ระบบ
                     </Buttons>

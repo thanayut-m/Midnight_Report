@@ -1,9 +1,9 @@
-import { FieldErrors, FieldValues, Path, UseFormRegister } from "react-hook-form"
+import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form"
 
 interface InputProps<T extends FieldValues> {
     type: string;
     placeholder?: string;
-    name: Path<T>;
+    name: string;
     register: UseFormRegister<T>;
     inputStateClassName?: string;
     errors?: FieldErrors<T>;
