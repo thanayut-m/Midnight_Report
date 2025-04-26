@@ -1,19 +1,19 @@
+import Tabs from "../../components/Tabs/Tabs"
+import Role_Management from "./Role_Management/Role_Management";
+import User_Management from "./User_Management/User_Management"
+
 const Setting = () => {
+    const productTabs = [
+        { tab: "user_management", name: "สมาชิก", content: < User_Management /> },
+        { tab: "role_management", name: "สิทธิ์การใช้งาน", content: <Role_Management /> },
+    ];
+
     return (
         <div>
-            <div className="breadcrumbs text-sm">
-                <ul>
-                    <li><a>Home</a></li>
-                    <li><a>Documents</a></li>
-                    <li>Add Document</li>
-                </ul>
+            <div className="text-4xl font-semibold mt-3">
+                Setting
             </div>
-            <div className="text-4xl font-bold">Setting</div>
-            <div role="tablist" className="tabs">
-                <a role="tab" className="tab">Tab 1</a>
-                <a role="tab" className="tab tab-active">Tab 2</a>
-                <a role="tab" className="tab">Tab 3</a>
-            </div>
+            <Tabs menuTab={productTabs} />
         </div>
     )
 }
