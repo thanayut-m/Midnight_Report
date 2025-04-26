@@ -6,7 +6,7 @@ interface SidebarMenuItemProps {
     subItems?: { title: string; to: string }[];
 }
 
-const SidebarMenuItem = ({
+const SubMenu = ({
     title,
     subItems
 }: SidebarMenuItemProps) => {
@@ -37,4 +37,4 @@ const SidebarMenuItem = ({
     );
 };
 
-export default SidebarMenuItem;
+export default SubMenu;

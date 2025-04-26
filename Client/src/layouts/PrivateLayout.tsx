@@ -25,7 +25,9 @@ const PrivateLayout = ({ children }: PrivateLayoutProps) => {
             <div className="flex flex-col flex-1">
                 <Navbar onToggleSidebar={handleSideBar} />
                 <main className="p-4 flex-1 overflow-auto">
-                    {children}
+                    <div className="container mx-auto px-4">
+                        {children}
+                    </div>
                 </main>
                 <Footer />
             </div>

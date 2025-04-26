@@ -1,6 +1,6 @@
-// Sidebar.tsx
 import { GrFormClose } from "react-icons/gr";
-import SidebarMenuItem from "./SidebarMenuItem";
+import MenuItem from "./MenuItem";
+import SubMenu from "./SubMenu";
 
 interface SidebarProps {
     isOpen: boolean;
@@ -30,25 +30,29 @@ const Sidebar = ({
                         />
                     </div>
                     <div className="">
-                        <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-                            <SidebarMenuItem
-                                title="Sidebar Item 1"
+                        <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4 ">
+                            <MenuItem
+                                title="Report Power BI"
+                                link="/private/powerBi-reports"
+                                onToggleSidebar={onToggleSidebar}
                             />
-                            <SidebarMenuItem
+                            <SubMenu
                                 title="Sidebar Item 2"
                                 subItems={[
                                     { title: "Submenu Item 1", to: "/submenu1" },
                                     { title: "Submenu Item 2", to: "/submenu2" }
                                 ]}
                             />
-                            <SidebarMenuItem
-                                title="Sidebar Item 3"
-                                subItems={[
-                                    { title: "Submenu Item 3", to: "/submenu3" },
-                                    { title: "Submenu Item 4", to: "/submenu4" }
-                                ]}
+                            <MenuItem
+                                title="ตั้งค่าการใช้งาน"
+                                link="/private/user-management"
+                                onToggleSidebar={onToggleSidebar}
+                            />
+                            <SubMenu
+                                title="Setting"
                             />
                         </ul>
+
                     </div>
                 </div>
             </div>

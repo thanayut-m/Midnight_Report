@@ -7,7 +7,6 @@ const Buttons = ({
     children,
     isSubmitting
 }: ButtonsProps) => {
-    console.log("isSubmitting :", isSubmitting)
     return (
         <button
             disabled={isSubmitting}
