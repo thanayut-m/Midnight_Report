@@ -1,6 +1,7 @@
 interface Column {
     key: string;
     label: string;
+    align?: string;
 }
 
 interface HasId {
@@ -15,10 +16,19 @@ interface TableProps<T> {
     onRowsPerPageChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
     onPageChange: (_event: unknown, newPage: number) => void;
     renderRow: (row: T, index: number) => React.ReactNode;
+    align?: string;
 }
 
 
-function Table<T extends HasId>({ columns, rows, page, rowsPerPage, onRowsPerPageChange, onPageChange, renderRow }: TableProps<T>) {
+function Table<T extends HasId>({
+    columns,
+    rows,
+    page,
+    rowsPerPage,
+    onRowsPerPageChange,
+    onPageChange,
+    renderRow,
+}: TableProps<T>) {
     const currentRows = rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
     const totalPages = rowsPerPage > 0 ? Math.ceil(rows.length / rowsPerPage) : 0;
 
@@ -29,7 +39,20 @@ function Table<T extends HasId>({ columns, rows, page, rowsPerPage, onRowsPerPag
                     <thead>
                         <tr>
                             {columns.map((column, index) => (
-                                <th key={index}>{column.label}</th>
+                                <th
+                                    key={index}
+                                    className={
+                                        column.align === 'center'
+                                            ? 'text-center'
+                                            : column.align === 'start'
+                                                ? 'text-start'
+                                                : column.align === 'end'
+                                                    ? 'text-end'
+                                                    : ''
+                                    }
+                                >
+                                    {column.label}
+                                </th>
                             ))}
                         </tr>
                     </thead>
