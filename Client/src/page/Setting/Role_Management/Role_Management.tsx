@@ -4,6 +4,7 @@ import { IoMdPersonAdd } from "react-icons/io";
 import Table from "../../../components/Table/Table";
 import { UseFormRegister, FieldValues } from "react-hook-form";
 import { useState } from "react";
+import Modals from "../../../components/Modals/Modals";
 
 const columns = [
     { key: "id", label: "ลำดับ", align: `center` },
@@ -28,7 +29,7 @@ interface Role_ManagementProps<T extends FieldValues> {
 const Role_Management = <T extends FieldValues>({
     register
 }: Role_ManagementProps<T>) => {
-
+    const [openModal, setOpenModal] = useState(null);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -40,6 +41,16 @@ const Role_Management = <T extends FieldValues>({
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+
+    const handleOpen = (modal) => {
+        setOpenModal(modal)
+        console.log(modal)
+    }
+
+    const handleClose = () => {
+        setOpenModal(null)
+    }
+
     return (
         <div className="flex flex-col bg-gray-300 p-3 rounded-2xl shadow-xl gap-3 ">
             <div className="flex flex-row justify-end items-center gap-3">
@@ -50,7 +61,9 @@ const Role_Management = <T extends FieldValues>({
                     placeholder="Search"
                     inputStateClassName="focus:input-warning hover:input-warning"
                 />
-                <Buttons>
+                <Buttons
+                    onClick={() => handleOpen("createRole")}
+                >
                     <IoMdPersonAdd /> เพิ่มผู้ใช้งาน
                 </Buttons>
             </div>
@@ -70,7 +83,23 @@ const Role_Management = <T extends FieldValues>({
                     </>
                 )}
             />
-
+            <Modals
+                open={openModal === "createRole"}
+                onClose={handleClose}
+                width="w-[25%]"
+                title="กําหนดสิทธิ์"
+                content={
+                    <form className="flex flex-col gap-3 outline outline-offset-2 rounded-lg p-3 shadow-3xl">
+                        ฟหกฟหก
+                    </form>
+                }
+                actions={
+                    <>
+                        <button className="btn btn-primary" onClick={handleClose}>บันทึก</button>
+                        <button className="btn" onClick={handleClose}>ยกเลิก</button>
+                    </>
+                }
+            />
         </div>
     )
 }

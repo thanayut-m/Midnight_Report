@@ -4,6 +4,7 @@ import { IoMdPersonAdd } from "react-icons/io";
 import Table from "../../../components/Table/Table";
 import { UseFormRegister, FieldValues } from "react-hook-form";
 import { useState } from "react";
+import Modals from "../../../components/Modals/Modals";
 
 
 const columns = [
@@ -48,7 +49,7 @@ interface User_ManagementProps<T extends FieldValues> {
 const User_Management = <T extends FieldValues>({
     register
 }: User_ManagementProps<T>) => {
-
+    const [openModal, setOpenModal] = useState(null);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -61,6 +62,15 @@ const User_Management = <T extends FieldValues>({
         setPage(0);
     };
 
+    const handleOpen = (modal) => {
+        setOpenModal(modal)
+        console.log(modal)
+    }
+
+    const handleClose = () => {
+        setOpenModal(null)
+    }
+
     return (
         <div className="flex flex-col bg-gray-300 p-3 rounded-2xl shadow-xl gap-3 ">
             <div className="flex flex-row justify-end items-center gap-3">
@@ -71,7 +81,9 @@ const User_Management = <T extends FieldValues>({
                     placeholder="Search"
                     inputStateClassName="focus:input-warning hover:input-warning"
                 />
-                <Buttons>
+                <Buttons
+                    onClick={() => handleOpen("createUser")}
+                >
                     <IoMdPersonAdd /> เพิ่มผู้ใช้งาน
                 </Buttons>
             </div>
@@ -98,7 +110,23 @@ const User_Management = <T extends FieldValues>({
                     </>
                 )}
             />
-
+            <Modals
+                open={openModal === "createUser"}
+                onClose={handleClose}
+                title="เพิ่มผู้ใช้งาน"
+                content={
+                    <form className="flex flex-col gap-3">
+                        <input type="text" placeholder="ชื่อผู้ใช้งาน" className="input input-bordered" />
+                        <input type="password" placeholder="รหัสผ่าน" className="input input-bordered" />
+                    </form>
+                }
+                actions={
+                    <>
+                        <button className="btn btn-primary" onClick={handleClose}>บันทึก</button>
+                        <button className="btn" onClick={handleClose}>ยกเลิก</button>
+                    </>
+                }
+            />
         </div>
     );
 };

@@ -2,15 +2,18 @@ interface ButtonsProps {
     children: React.ReactNode;
     isSubmitting?: boolean;
     width?: string;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const Buttons = ({
     children,
     isSubmitting,
-    width
+    width,
+    onClick
 }: ButtonsProps) => {
     return (
         <button
+            onClick={onClick}
             disabled={isSubmitting}
             className={`btn bg-amber-400 hover:bg-amber-600 ${width}`}
         >
